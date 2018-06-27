@@ -11,8 +11,8 @@ app.use(express.static('public'));
 
 app.use('/api/*', proxy({ target, changeOrigin: true }));
 
-// const wsProxy = proxy('/socket.io', { target, ws: true, changeOrigin: true });
-// app.use(wsProxy);
+const wsProxy = proxy('/socket.io', { target, ws: true, changeOrigin: true });
+app.use(wsProxy);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -20,4 +20,4 @@ app.get('/*', (req, res) => {
 
 const server = app.listen(port);
 
-// server.on('upgrade', wsProxy.upgrade);
+server.on('upgrade', wsProxy.upgrade);
