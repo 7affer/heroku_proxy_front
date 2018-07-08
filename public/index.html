@@ -11,9 +11,7 @@
     INDEX
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
     <script>
-      var socket = io({
-        transports: ['websocket', 'polling', 'long-polling']
-      });
+      var socket = io();
 
       socket.on('hello', (data) => {
         console.log(data);
