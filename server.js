@@ -15,6 +15,8 @@ const wsProxy = proxy('/socket.io', { target, ws: true, changeOrigin: true });
 app.use(wsProxy);
 
 app.get('/*', (req, res) => {
+  console.log(`headers['x-forwarded-for']`, req.headers['x-forwarded-for']);
+  console.log('connection.remoteAddress', req.connection.remoteAddress);
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
